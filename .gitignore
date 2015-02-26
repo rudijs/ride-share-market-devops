@@ -2,3 +2,4 @@
 .bundle
 .vagrant
 berks-cookbooks
+chef_secret_key.txt

@@ -142,8 +142,26 @@ class MyCLI < Thor
   end
 
   desc "server_bootstrap SERVER", "Bootstraps a digitalocean.com droplet"
+  option :secret_key, :default => default[:secret_key]
 
   def server_bootstrap(name)
+
+    if !File.exists?(options[:secret_key])
+      raise "Required File Not Found: #{options[:secret_key]}"
+    end
+
+    puts "==> Apt-get Auto Remove before bootstrapping chef-solo on #{options[:hostname]}..."
+    cmd = "ssh root@#{name} -X 'sudo apt-get autoremove -y'"
+    puts "==> #{cmd}"; system cmd
+
+    cmd = "scp #{options[:secret_key]} root@#{name}:~/.ssh/chef_secret_key.txt"
+    puts "==> Uploading Chef Secret Key..."
+    puts "==> #{cmd}"; system cmd
+
+    cmd = "ssh root@#{name} 'chmod 600 ~/.ssh/chef_secret_key.txt'"
+    puts "==> Updating Chef Secret Key Permissions..."
+    puts "==> #{cmd}"; system cmd
+
     cloud = DigitalOcean.new
     cloud.bootstrap(name)
   end

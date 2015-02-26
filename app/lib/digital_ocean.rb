@@ -46,7 +46,8 @@ class DigitalOcean
       "--" + do_boolean.to_s
     }
 
-    cmd = "knife digital_ocean droplet create --yes --server-name #{name} --image #{digital_ocean[:image]} --size #{digital_ocean[:size]} --location #{digital_ocean[:location]} --ssh-keys #{digital_ocean[:ssh_keys].join(',')} #{digital_ocean_booleans.join(' ')} --bootstrap --run-list 'recipe[common]' --json-attributes '#{new_server[0]["chefJsonAttributes"].to_json}'"
+    # cmd = "knife digital_ocean droplet create --yes --server-name #{name} --image #{digital_ocean[:image]} --size #{digital_ocean[:size]} --location #{digital_ocean[:location]} --ssh-keys #{digital_ocean[:ssh_keys].join(',')} #{digital_ocean_booleans.join(' ')} --bootstrap --run-list 'recipe[common]' --json-attributes '#{new_server[0]["chefJsonAttributes"].to_json}'"
+    cmd = "knife digital_ocean droplet create --yes --server-name #{name} --image #{digital_ocean[:image]} --size #{digital_ocean[:size]} --location #{digital_ocean[:location]} --ssh-keys #{digital_ocean[:ssh_keys].join(',')} #{digital_ocean_booleans.join(' ')}"
     puts "==> #{cmd}"; system cmd
 
   end
