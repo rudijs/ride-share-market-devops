@@ -1,0 +1,8 @@
+source "https://api.berkshelf.com"
+
+cookbook "chef-client"
+cookbook "timezone-ii"
+cookbook "hostname"
+cookbook "hostsfile"
+cookbook "unattended_upgrades"
+cookbook "postfix"

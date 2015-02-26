@@ -1,0 +1,7 @@
+name             'notify-email-on-boot'
+maintainer       'Ride Share Market'
+maintainer_email 'systemsadmin@ridesharemarket.com'
+license          'All rights reserved'
+description      'Installs/Configures notify-email-on-boot'
+long_description 'Installs/Configures notify-email-on-boot'
+version          '0.1.0'

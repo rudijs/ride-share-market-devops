@@ -1,0 +1,12 @@
+knife[:berkshelf_path] = "cookbooks"
+
+cookbook_path    ["berks-cookbooks", "site-cookbooks"]
+node_path        "nodes"
+role_path        "roles"
+environment_path "environments"
+data_bag_path    "data_bags"
+#encrypted_data_bag_secret "data_bag_key"
+
+knife[:berkshelf_path] = "berks-cookbooks"
+
+#knife[:digital_ocean_access_token]   = "xxx-xxx-xxx"

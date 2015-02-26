@@ -1,0 +1,26 @@
+start on runlevel [!06]
+
+task
+
+script
+
+PUBLIC_IP=`curl --connect-timeout 5 -s icanhazip.com`
+
+MAILADD=<%= @mail_to %>
+
+SERVER=`hostname --fqdn`
+
+MESSAGE=$(cat <<EOF
+$SERVER has booted up.
+
+Public IP: $PUBLIC_IP
+
+If this is news to you, please investigate.
+
+`date -u`
+EOF
+)
+
+exec echo "$MESSAGE" | mail -s "Boot of $SERVER" $MAILADD
+
+end script

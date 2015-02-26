@@ -1,0 +1,7 @@
+name             'packages'
+maintainer       'Ride Share Market'
+maintainer_email 'systemsadmin@ridesharemarket.com'
+license          'All rights reserved'
+description      'Installs/Configures packages'
+long_description 'Installs/Configures packages'
+version          '0.1.0'
