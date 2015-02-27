@@ -5,17 +5,19 @@
 - Update data_bags/network json file with the Digital Ocean Instance ID and public IP address.
 - Update /etc/hosts.
 - Update DNS (see below).
+- Create Ubuntu user account (for all future devops operations)
+- `./devops.rb create_ubuntu_account --user root --hostname redline`
 - Upgrade the server.
-- `./devops.rb upgrade --user root --hostname redline`
-- Reboot the server (sanity check and possibly a new kernel).
-- `./devops.rb reboot --user root --hostname redline`
+- `./devops.rb upgrade --user ubuntu --hostname redline`
+- Reboot the server (sanity check plus reboot into any new linux kernel).
+- `./devops.rb reboot --user ubuntu --hostname redline`
 - Bootstrap the server, which includes:
 - apt-get autoremove.
 - Copy in the chef secret key.
 - Bootstrap Chef Node.
 - `./devops.rb server_bootstrap redline`
 - Reboot the server and confirm boot up email received.
-- `./devops.rb reboot --user root --hostname redline`
+- `./devops.rb reboot --user ubuntu --hostname redline`
 
 ## Destroy
 

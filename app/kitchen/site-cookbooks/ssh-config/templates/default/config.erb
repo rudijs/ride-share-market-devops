@@ -1,0 +1,18 @@
+<% @ssh_config_hosts.each do |ssh_host| %>
+Host <%= ssh_host[:host] %>
+Hostname <%= ssh_host[:host_name] %>
+Port 22
+User <%= ssh_host[:user] %>
+ForwardAgent yes
+ServerAliveInterval 30
+LogLevel Debug
+
+Host <%= ssh_host[:host] %>-deploy
+Hostname <%= ssh_host[:host_name] %>
+Port 22
+User deploy
+ForwardAgent yes
+ServerAliveInterval 30
+LogLevel Debug
+
+<% end %>

@@ -152,15 +152,15 @@ class MyCLI < Thor
       raise "Required File Not Found: #{options[:secret_key]}"
     end
 
-    puts "==> Apt-get Auto Remove before bootstrapping chef-solo on #{options[:hostname]}..."
-    cmd = "ssh root@#{name} -X 'sudo apt-get autoremove -y'"
+    puts "==> Apt-get Auto Remove before bootstrapping chef-client on #{options[:hostname]}..."
+    cmd = "ssh ubuntu@#{name} -X 'sudo apt-get autoremove -y'"
     puts "==> #{cmd}"; system cmd
 
-    cmd = "scp #{options[:secret_key]} root@#{name}:~/.ssh/chef_secret_key.txt"
+    cmd = "scp #{options[:secret_key]} ubuntu@#{name}:~/.ssh/chef_secret_key.txt"
     puts "==> Uploading Chef Secret Key..."
     puts "==> #{cmd}"; system cmd
 
-    cmd = "ssh root@#{name} 'chmod 600 ~/.ssh/chef_secret_key.txt'"
+    cmd = "ssh ubuntu@#{name} 'chmod 600 ~/.ssh/chef_secret_key.txt'"
     puts "==> Updating Chef Secret Key Permissions..."
     puts "==> #{cmd}"; system cmd
 

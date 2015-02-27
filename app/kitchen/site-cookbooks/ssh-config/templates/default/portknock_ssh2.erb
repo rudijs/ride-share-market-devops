@@ -1,0 +1,8 @@
+#!/bin/sh
+
+echo "==> Limitedly Open SSH Port Knock: ${1}"
+
+<% @knockd_sequence.each {|port| %>
+knock -v $1 <%= port %>
+sleep 2
+<% } %>

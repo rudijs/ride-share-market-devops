@@ -24,10 +24,10 @@
         "noc.dev.ridesharemarket.com"
       ],
       "digitalOcean": {
-        "id": "4284761",
+        "id": "4286264",
         "ip": {
           "eth0": "188.166.45.226",
-          "eth1": "xxx.xxx.xxx.xxx"
+          "eth1": "10.133.190.73"
         },
         "size": "512mb"
       },
@@ -37,7 +37,6 @@
         ],
         "jsonAttributes": {
           "set_fqdn": "redline.ridesharemarket.com",
-          "tz": "UTC",
           "postfix": {
             "main": {
               "hostname": "redline",

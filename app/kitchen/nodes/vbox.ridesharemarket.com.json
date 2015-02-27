@@ -1,7 +1,6 @@
 {
   "name": "vbox",
   "set_fqdn": "vbox.ridesharemarket.com",
-  "tz": "UTC",
   "postfix": {
     "main": {
       "hostname": "vbox",
@@ -14,6 +13,11 @@
   },
   "firehol": {
     "virtual_box_hosts": "10.0.0.0/8"
+  },
+  "ssh-config": {
+    "users": [
+      "vagrant"
+    ]
   },
   "run_list": [
     "recipe[common]"

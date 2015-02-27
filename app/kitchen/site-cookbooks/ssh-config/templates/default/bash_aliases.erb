@@ -1,0 +1,6 @@
+<% @ssh_config_hosts.each do |ssh_host| %>
+alias <%= ssh_host[:host] %>='~/portknock-ssh1 <%= ssh_host[:host_name] %> && mosh <%= ssh_host[:host] %>'
+alias <%= ssh_host[:host] %>-long-ssh='~/portknock-ssh2 <%= ssh_host[:host_name] %> && mosh <%= ssh_host[:host] %>'
+alias <%= ssh_host[:host] %>-long-ssh-close='~/portknock-ssh2-close <%= ssh_host[:host_name] %>'
+alias <%= ssh_host[:host] %>-deploy='~/portknock-ssh1 <%= ssh_host[:host_name] %> && mosh <%= ssh_host[:host] %>-deploy'
+<% end %>

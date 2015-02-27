@@ -61,7 +61,7 @@ class DigitalOcean
 
     raise "Host not found: #{name}" if new_server.size == 0
 
-    cmd = "knife bootstrap #{name} --yes --node-name #{name} --ssh-user root --run-list '#{new_server[0]["chefBootstrap"]["runList"].join(",")}' --json-attributes '#{new_server[0]["chefBootstrap"]["jsonAttributes"].to_json}'"
+    cmd = "knife bootstrap #{name} --yes --sudo --node-name #{name} --ssh-user ubuntu --run-list '#{new_server[0]["chefBootstrap"]["runList"].join(",")}' --json-attributes '#{new_server[0]["chefBootstrap"]["jsonAttributes"].to_json}'"
     puts "==> #{cmd}"; system cmd
 
   end
@@ -105,7 +105,7 @@ class DigitalOcean
       }
     end
 
-    cmd = "ssh-keygen -f /home/rudi/.ssh/known_hosts -R #{new_server[0]["chefJsonAttributes"]["set_fqdn"]}"
+    cmd = "ssh-keygen -f /home/rudi/.ssh/known_hosts -R #{new_server[0]["chefBootstrap"]["jsonAttributes"]["set_fqdn"]}"
     puts "==> #{cmd}"; system cmd
 
   end
