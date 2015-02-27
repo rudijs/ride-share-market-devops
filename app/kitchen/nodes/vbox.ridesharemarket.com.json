@@ -12,6 +12,9 @@
       "root": "systemsadmin@ridesharemarket.com"
     }
   },
+  "firehol": {
+    "virtual_box_hosts": "10.0.0.0/8"
+  },
   "run_list": [
     "recipe[common]"
   ]

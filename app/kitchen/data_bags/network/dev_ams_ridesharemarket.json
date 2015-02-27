@@ -1,5 +1,5 @@
 {
-  "id": "dev.ams.ridesharemarket.com",
+  "id": "dev_ams_ridesharemarket",
   "defaults": {
     "digitalOcean": {
       "image": "ubuntu-14-04-x64",
@@ -24,26 +24,32 @@
         "noc.dev.ridesharemarket.com"
       ],
       "digitalOcean": {
-        "id": "4278011",
+        "id": "4284761",
         "ip": {
           "eth0": "188.166.45.226",
           "eth1": "xxx.xxx.xxx.xxx"
         },
         "size": "512mb"
       },
-      "chefJsonAttributes": {
-        "set_fqdn": "redline.ridesharemarket.com",
-        "tz": "UTC",
-        "postfix": {
-          "main": {
-            "hostname": "redline",
-            "mydomain": "ridesharemarket.com",
-            "smtpd_use_tls": "no"
-          },
-          "aliases": {
-            "root": "systemsadmin@ridesharemarket.com"
+      "chefBootstrap": {
+        "runList": [
+          "recipe[common]"
+        ],
+        "jsonAttributes": {
+          "set_fqdn": "redline.ridesharemarket.com",
+          "tz": "UTC",
+          "postfix": {
+            "main": {
+              "hostname": "redline",
+              "mydomain": "ridesharemarket.com",
+              "smtpd_use_tls": "no"
+            },
+            "aliases": {
+              "root": "systemsadmin@ridesharemarket.com"
+            }
           }
         }
+
       }
     }
   ]

@@ -3,7 +3,7 @@ require "json"
 class DigitalOcean
 
   def initialize
-    @network = "dev.ams.ridesharemarket.com"
+    @network = "dev_ams_ridesharemarket"
     @file_path = File.join(File.dirname(__FILE__), "/../kitchen/data_bags/network/#{@network}.json")
     @data_hash = JSON.parse(File.read(@file_path))
   end
@@ -61,7 +61,7 @@ class DigitalOcean
 
     raise "Host not found: #{name}" if new_server.size == 0
 
-    cmd = "knife bootstrap #{name} --yes --node-name #{name} --ssh-user root --run-list 'recipe[common]' --json-attributes '#{new_server[0]["chefJsonAttributes"].to_json}'"
+    cmd = "knife bootstrap #{name} --yes --node-name #{name} --ssh-user root --run-list '#{new_server[0]["chefBootstrap"]["runList"].join(",")}' --json-attributes '#{new_server[0]["chefBootstrap"]["jsonAttributes"].to_json}'"
     puts "==> #{cmd}"; system cmd
 
   end

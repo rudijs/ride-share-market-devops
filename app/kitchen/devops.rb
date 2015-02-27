@@ -10,7 +10,7 @@ class MyCLI < Thor
       :user => "vagrant",
       :hostname => "vbox.ridesharemarket.com",
       :vagrant_ip => "192.168.33.10",
-      :secret_key => ".chef/chef_secret_key.txt",
+      :secret_key => "#{ENV['HOME']}/.ssh/rsmcom/chef_secret_key.txt",
       :cookbook => {
           :maintainer => "Ride Share Market",
           :maintainer_email => "systemsadmin@ridesharemarket.com"
@@ -90,9 +90,11 @@ class MyCLI < Thor
     puts "==> Apt-get Auto Remove before bootstrapping chef-solo on #{options[:hostname]}..."
     cmd = "ssh #{options[:user]}@#{options[:hostname]} -X 'sudo apt-get autoremove -y'"
     puts "==> #{cmd}"; system cmd
+
     puts "==> Bootstrapping chef-solo on #{options[:hostname]}..."
     cmd = "ssh #{options[:user]}@#{options[:hostname]} \"if ! [ -e /usr/bin/curl ]; then sudo apt-get install -y curl; else echo 'curl [OK]' ; fi\""
     puts "==> #{cmd}"; system cmd
+
     cmd = "ssh #{options[:user]}@#{options[:hostname]} \"if ! [ -e /opt/chef/bin/chef-solo ]; then curl -L https://www.chef.io/chef/install.sh | sudo bash; else echo 'Chef [OK]' ; fi\""
     puts "==> #{cmd}"; system cmd
   end
@@ -104,24 +106,24 @@ class MyCLI < Thor
 
   def cook
 
-    # if !File.exists?(options[:secret_key])
-    #   raise "Required File Not Found: #{options[:secret_key]}"
-    # end
+    if !File.exists?(options[:secret_key])
+      raise "Required File Not Found: #{options[:secret_key]}"
+    end
 
-    # cmd = "scp #{options[:secret_key]} #{options[:user]}@#{options[:hostname]}:~/.ssh/chef_secret_key.txt"
-    # puts "==> Uploading Chef Secret Key..."
-    # puts "==> #{cmd}"; system cmd
+    cmd = "scp #{options[:secret_key]} #{options[:user]}@#{options[:hostname]}:~/.ssh/chef_secret_key.txt"
+    puts "==> Uploading Chef Secret Key..."
+    puts "==> #{cmd}"; system cmd
 
     cmd = "knife solo cook --forward-agent --no-chef-check --no-berkshelf #{options[:user]}@#{options[:hostname]}"
     puts "==> Chef Solo Client Run..."
     puts "==> #{cmd}"; system cmd
 
-    # cmd = "knife solo clean #{options[:user]}@#{options[:hostname]}"
-    # puts "==> #{cmd}"; system cmd
+    cmd = "knife solo clean #{options[:user]}@#{options[:hostname]}"
+    puts "==> #{cmd}"; system cmd
 
-    # cmd = "ssh #{options[:user]}@#{options[:hostname]} \"if [ -e ~/.ssh/chef_secret_key.txt ]; then rm -v ~/.ssh/chef_secret_key.txt; fi\""
-    # puts "==> Cleaning up Chef Secret Key..."
-    # puts "==> #{cmd}"; system cmd
+    cmd = "ssh #{options[:user]}@#{options[:hostname]} \"if [ -e ~/.ssh/chef_secret_key.txt ]; then rm -v ~/.ssh/chef_secret_key.txt; fi\""
+    puts "==> Cleaning up Chef Secret Key..."
+    puts "==> #{cmd}"; system cmd
 
   end
 

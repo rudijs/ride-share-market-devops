@@ -1,0 +1,7 @@
+name             'secrets'
+maintainer       'Ride Share Market'
+maintainer_email 'systemsadmin@ridesharemarket.com'
+license          'All rights reserved'
+description      'Installs/Configures secrets'
+long_description 'Installs/Configures secrets'
+version          '0.1.0'

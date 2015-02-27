@@ -9,7 +9,7 @@
 
 require 'chef/encrypted_data_bag_item'
 
-secret_key_path = "#{File.dirname(__FILE__)}/../kitchen/.chef/chef_secret_key.txt"
+secret_key_path = "#{ENV['HOME']}/.ssh/rsmcom/chef_secret_key.txt"
 
 secrets_json_path = "#{File.dirname(__FILE__)}/../kitchen/.chef/secrets.json"
 
@@ -27,7 +27,7 @@ encrypted_data_bag = Chef::EncryptedDataBagItem.encrypt_data_bag_item(data_bag, 
 
 File.open( encrypted_secrets_json_path, 'w') do |f|
   f.print encrypted_data_bag.to_json
-  puts "* #{secrets_json_path} encrypted to #{encrypted_secrets_json_path}"
-  puts "+ Please ensure KeePass is updated with the current data that was just encrypted."
-  puts "+ You may now safely delete if no longer required: #{secrets_json_path}"
+  puts "==> #{secrets_json_path} encrypted to #{encrypted_secrets_json_path}"
+  puts "==> Please ensure KeePass is updated with the current data that was just encrypted."
+  puts "==> You may now safely delete if no longer required: #{secrets_json_path}"
 end

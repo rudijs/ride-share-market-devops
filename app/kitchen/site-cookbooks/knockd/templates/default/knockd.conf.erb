@@ -1,0 +1,24 @@
+[options]
+        UseSyslog
+
+[brieflyOpenSSH]
+        sequence      = <%= @sequences["brieflyOpenSsh"].join(",") %>
+        tcpflags      = syn
+        seq_timeout   = 10
+        start_command = /sbin/iptables -A knock_SSH1 -s %IP% -j ACCEPT
+        cmd_timeout   = 60
+        stop_command  = /sbin/iptables -D knock_SSH1 -s %IP% -j ACCEPT
+
+[limitedlyOpenSSH]
+        sequence      = <%= @sequences["limitedlyOpenSsh"].join(",") %>
+        tcpflags      = syn
+        seq_timeout   = 10
+        start_command = /sbin/iptables -A knock_SSH2 -s %IP% -j ACCEPT
+        cmd_timeout   = 3600
+        stop_command  = /sbin/iptables -D knock_SSH2 -s %IP% -j ACCEPT
+
+[closeLimitedlyOpenSSH]
+        sequence    = <%= @sequences["closeLimitedlyOpenSsh"].join(",") %>
+        tcpflags    = syn
+        seq_timeout = 10
+        command     = /sbin/iptables -D knock_SSH2 -s %IP% -j ACCEPT

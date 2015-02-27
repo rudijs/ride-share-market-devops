@@ -4,7 +4,7 @@ require 'json'
 
 require './decryptor'
 
-secret_key_path = "#{File.dirname(__FILE__)}/../kitchen/.chef/chef_secret_key.txt"
+secret_key_path = "#{ENV['HOME']}/.ssh/rsmcom/chef_secret_key.txt"
 
 secrets_path = File.join(File.dirname(__FILE__), "/../kitchen/data_bags/secrets/secrets.json")
 
