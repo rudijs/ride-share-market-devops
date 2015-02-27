@@ -19,6 +19,14 @@
       "vagrant"
     ]
   },
+  "tmux": {
+    "users": [
+      {
+        "user": "vagrant",
+        "home": "/home/vagrant"
+      }
+    ]
+  },
   "run_list": [
     "recipe[common]"
   ]

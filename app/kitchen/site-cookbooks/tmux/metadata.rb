@@ -1,0 +1,7 @@
+name             'tmux'
+maintainer       'Ride Share Market'
+maintainer_email 'systemsadmin@ridesharemarket.com'
+license          'All rights reserved'
+description      'Installs/Configures tmux'
+long_description 'Installs/Configures tmux'
+version          '0.1.0'
