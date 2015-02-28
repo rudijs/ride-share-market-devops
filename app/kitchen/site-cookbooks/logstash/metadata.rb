@@ -6,4 +6,5 @@ description      'Installs/Configures logstash'
 long_description 'Installs/Configures logstash'
 version          '0.1.0'
 
+depends 'apt'
 depends 'secrets'

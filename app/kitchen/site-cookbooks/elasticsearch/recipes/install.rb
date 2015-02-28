@@ -5,6 +5,7 @@ apt_repository "elasticsearch" do
 end
 
 package "openjdk-7-jre"
+
 package "elasticsearch"
 
 service "elasticsearch" do
