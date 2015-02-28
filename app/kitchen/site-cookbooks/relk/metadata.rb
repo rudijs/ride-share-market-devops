@@ -1,0 +1,12 @@
+name             'relk'
+maintainer       'Ride Share Market'
+maintainer_email 'systemsadmin@ridesharemarket.com'
+license          'All rights reserved'
+description      'Installs/Configures RELK'
+long_description 'Installs/Configures RabbitMQ, Elasticsearch, Logstash and Kibana'
+version          '0.1.0'
+
+depends 'rabbitmq-config'
+depends 'elasticsearch'
+depends 'logstash'
+depends 'kibana'

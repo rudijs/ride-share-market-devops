@@ -1,0 +1,16 @@
+input {
+    rabbitmq {
+        host => "<%= @settings["rabbitmq_host"] %>"
+        user => "<%= @rabbitmq_user["name"] %>"
+        password => "<%= @rabbitmq_user["password"] %>"
+        vhost => "<%= @settings["rabbitmq_vhost"] %>"
+        port => 5672
+        queue => "logstash-queue"
+        durable => true
+        exchange => "logstash-rabbitmq"
+        key => "logstash"
+        threads => 1
+        prefetch_count => 50
+        tags => [ "rabbitmq-input" ]
+    }
+}

@@ -28,6 +28,7 @@
     ]
   },
   "run_list": [
-    "recipe[common]"
+    "recipe[common]",
+    "recipe[relk]"
   ]
 }

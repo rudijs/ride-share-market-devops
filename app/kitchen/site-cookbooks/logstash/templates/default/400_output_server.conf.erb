@@ -1,0 +1,21 @@
+output {
+    if "rabbitmq-input" in [tags] {
+        elasticsearch_http {
+            host => "<%= @settings["elasticsearch_host"] %>"
+        }
+    }
+    else {
+        rabbitmq {
+            host => "<%= @settings["rabbitmq_host"] %>"
+            user => "<%= @rabbitmq_user["name"] %>"
+            password => "<%= @rabbitmq_user["password"] %>"
+            vhost => "<%= @settings["rabbitmq_vhost"] %>"
+            exchange => "logstash-rabbitmq"
+            exchange_type => "direct"
+            key => "logstash"
+            durable => true
+            persistent => true
+            workers => 1
+        }
+    }
+}
