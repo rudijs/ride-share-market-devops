@@ -24,16 +24,17 @@
         "noc.dev.ridesharemarket.com"
       ],
       "digitalOcean": {
-        "id": "4286264",
+        "id": "4299022",
         "ip": {
           "eth0": "188.166.45.226",
           "eth1": "10.133.190.73"
         },
-        "size": "512mb"
+        "size": "1gb"
       },
       "chefBootstrap": {
         "runList": [
-          "recipe[common]"
+          "recipe[common]",
+          "recipe[relk]"
         ],
         "jsonAttributes": {
           "set_fqdn": "redline.ridesharemarket.com",

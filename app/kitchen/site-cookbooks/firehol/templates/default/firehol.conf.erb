@@ -25,6 +25,8 @@ SSH_ACCESS="${ADMIN_HOSTS}"
 
 HTTP_ACCESS="${ADMIN_HOSTS}"
 
+RABBITMQ_ACCESS="${ADMIN_HOSTS}"
+
 KIBANA_ACCESS="${ADMIN_HOSTS}"
 
 ICMP_ACCESS="${ADMIN_HOSTS}"
@@ -47,7 +49,10 @@ server_mosh_ports="udp/60000:61000"
 client_mosh_ports="default 60000:61000"
 
 server_kibana_ports="tcp/5601"
-client_kibana_ports=" default 5601"
+client_kibana_ports="default 5601"
+
+server_rabbitmq_ports="tcp/15672"
+client_rabbitmq_ports="default 15672"
 
 # consul.io - Health checking, service discovery, key/value store
 server_consul_ports="tcp/8300 udp/8300 tcp/8301 udp/8301 tcp/8302 udp/8302 tcp/8400 udp/8400 tcp/8500 udp/8500 tcp/8600 udp/8600"
@@ -127,6 +132,9 @@ interface "${internet_interface}" internet
 
         # HTTP
         server http accept src "${HTTP_ACCESS}"
+
+        # RabbitMQ Web Admin
+        server rabbitmq accept src "${RABBITMQ_ACCESS}"
 
         # Kibana
         server kibana accept src "${KIBANA_ACCESS}"

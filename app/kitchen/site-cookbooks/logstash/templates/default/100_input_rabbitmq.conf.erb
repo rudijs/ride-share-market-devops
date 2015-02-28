@@ -14,3 +14,17 @@ input {
         tags => [ "rabbitmq-input" ]
     }
 }
+
+input {
+    file {
+        type => "rabbitmq"
+        path => [
+            "/var/log/rabbitmq/rabbit@*.log",
+            "/var/log/rabbitmq/rabbit@*-sasl.log",
+            "/var/log/rabbitmq/shutdown_err",
+            "/var/log/rabbitmq/shutdown_log",
+            "/var/log/rabbitmq/startup_err",
+            "/var/log/rabbitmq/startup_log"
+        ]
+    }
+}

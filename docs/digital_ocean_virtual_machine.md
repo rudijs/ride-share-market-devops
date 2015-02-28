@@ -30,11 +30,11 @@
 ## DNS
 
 - Create
-- `knife digital_ocean domain create --name ridesharemarket.com -ip-address 188.166.45.226`
+- `knife digital_ocean domain create --name ridesharemarket.com -ip-address xxx.xxx.xxx.xxx`
 - `knife digital_ocean domain record create --domain-id ridesharemarket.com --type CNAME --name www --data @`
-- `knife digital_ocean domain record create --domain-id ridesharemarket.com --type A --name redline --data 188.166.45.226`
+- `knife digital_ocean domain record create --domain-id ridesharemarket.com --type A --name redline --data xxx.xxx.xxx.xxx`
 - Update (remove then add)
 - `knife digital_ocean domain record list -D ridesharemarket.com`
 - Find the ID of the record to remove
 - `knife digital_ocean domain record destroy --domain-id ridesharemarket.com --record-id 5563232`
-- `knife digital_ocean domain record create --domain-id ridesharemarket.com --type A --name redline --data 188.166.45.226`
+- `knife digital_ocean domain record create --domain-id ridesharemarket.com --type A --name redline --data xxx.xxx.xxx.xxx`
