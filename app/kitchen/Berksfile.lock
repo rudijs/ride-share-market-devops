@@ -1,9 +1,13 @@
 DEPENDENCIES
+  apt
   chef-client
+  graphite
   hostname
   hostsfile
+  iojs
   postfix
   rabbitmq
+  statsdaemon-bitly
   timezone-ii
   unattended_upgrades
 
@@ -22,15 +26,38 @@ GRAPH
     yum (~> 3.0)
     yum-epel (>= 0.0.0)
     yum-erlang_solutions (>= 0.0.0)
+  golang (1.5.0)
+  graphite (1.0.2)
+    build-essential (>= 0.0.0)
+    memcached (>= 0.0.0)
+    python (>= 0.0.0)
+    runit (~> 1.0)
+    yum-epel (>= 0.0.0)
   hostname (0.3.0)
     hostsfile (>= 0.0.0)
   hostsfile (2.4.5)
+  iojs (0.2.1)
+    tar (>= 0.0.0)
   logrotate (1.8.0)
+  memcached (1.7.2)
+    runit (~> 1.0)
+    yum (~> 3.0)
+    yum-epel (>= 0.0.0)
   postfix (3.6.2)
+  python (1.4.6)
+    build-essential (>= 0.0.0)
+    yum-epel (>= 0.0.0)
   rabbitmq (3.11.0)
     erlang (>= 0.9)
     yum-epel (>= 0.0.0)
     yum-erlang_solutions (>= 0.0.0)
+  runit (1.5.16)
+    build-essential (>= 0.0.0)
+    yum (~> 3.0)
+    yum-epel (>= 0.0.0)
+  statsdaemon-bitly (1.0.3)
+    golang (>= 0.0.0)
+  tar (0.6.0)
   timezone-ii (0.2.0)
   unattended_upgrades (0.2.0)
   windows (1.36.6)

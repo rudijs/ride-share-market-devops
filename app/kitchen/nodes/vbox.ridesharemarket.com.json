@@ -30,6 +30,8 @@
   "run_list": [
     "recipe[common]",
     "recipe[relk]",
-    "recipe[mongodb]"
+    "recipe[metrics]",
+    "recipe[mongodb]",
+    "recipe[iojs]"
   ]
 }
