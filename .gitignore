@@ -1,5 +1,6 @@
 .idea
 .bundle
 .vagrant
+.kitchen
 berks-cookbooks
 secrets.json

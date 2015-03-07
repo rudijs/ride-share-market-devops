@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
 gem "chef"
+gem "test-kitchen"
 gem "knife-solo"
 gem "berkshelf", github: "berkshelf/berkshelf"
 gem "thor"

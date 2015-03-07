@@ -32,6 +32,7 @@
     "recipe[relk]",
     "recipe[metrics]",
     "recipe[mongodb]",
+    "recipe[docker]",
     "recipe[iojs]"
   ]
 }
