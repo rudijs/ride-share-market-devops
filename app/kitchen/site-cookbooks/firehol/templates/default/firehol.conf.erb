@@ -112,9 +112,8 @@ FIREHOL_LOG_BURST="5"
 interface "${lan_interface}" lan
         policy accept
 
-interface "${internet_interface}" internet
+interface "${internet_interface}" internet src not "${newunroutable_ips}" "${internet_params[@]}"
 
-        src not "${newunroutable_ips}" "${internet_params[@]}"
         protection "${internet_protections}" ${internet_requests}
         policy reject
         client all accept
@@ -141,3 +140,4 @@ interface "${internet_interface}" internet
 
         # Consul
         server consul accept src "${CONSUL_ACCESS}"
+

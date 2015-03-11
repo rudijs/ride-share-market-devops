@@ -1,0 +1,13 @@
+{
+  "id": "rsm-data",
+  "uid": 2000,
+  "comment": "rsm-data",
+  "home": "/home/rsm-data",
+  "shell": "/bin/bash",
+  "create_group": true,
+  "manage_home": true,
+  "ssh_keygen": "false",
+  "ssh_keys": [
+    "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA3yqVs/AftM/RGO8NFtqoKLjRObNVD1ZU+bS9fdXXzlR+lL0aLGznEJnI14nB2lCFlrkfiC9aiC53OiVkYmB7efFN6/RdBDoveUm4SEqXbxI3mmJ/gYE8EjHsmz5P7TgKhnIYv3vhqUPbzQl2jH0gtutwOIdRx60OWR874MAp1uYR3+v/G/AjNq1OLnQtkjR6TJ4eNb93QTASfsqjvQPKwh7hkqPailm4fJVdGTMpib+K2HkXX3FGJBngrai2469amJ9yI3HsT1rK1RjyHbmNfSDqaYsxUc8cpDb42xWAa77ga9kbydR0SUl9MN1/boFUvY34Ezm3DlXnf6IDuNptgw== rudijs@local"
+  ]
+}

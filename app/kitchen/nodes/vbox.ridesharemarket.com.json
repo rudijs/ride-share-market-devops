@@ -14,6 +14,9 @@
   "firehol": {
     "virtual_box_hosts": "10.0.0.0/8"
   },
+  "users": [
+    "rsm-data"
+  ],
   "ssh-config": {
     "users": [
       "vagrant"
@@ -32,7 +35,7 @@
     "recipe[relk]",
     "recipe[metrics]",
     "recipe[mongodb]",
-    "recipe[docker]",
-    "recipe[iojs]"
+    "recipe[docker-wrapper]",
+    "recipe[docker-containers]"
   ]
 }

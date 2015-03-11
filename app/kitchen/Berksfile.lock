@@ -5,12 +5,12 @@ DEPENDENCIES
   graphite
   hostname
   hostsfile
-  iojs
   postfix
   rabbitmq
   statsdaemon-bitly
   timezone-ii
   unattended_upgrades
+  user
 
 GRAPH
   apt (2.6.1)
@@ -67,8 +67,6 @@ GRAPH
   hostname (0.3.0)
     hostsfile (>= 0.0.0)
   hostsfile (2.4.5)
-  iojs (0.2.1)
-    tar (>= 0.0.0)
   iptables (0.14.1)
   iptables-ng (2.2.5)
   logrotate (1.8.0)
@@ -99,9 +97,9 @@ GRAPH
     golang (>= 0.0.0)
   sysctl (0.6.2)
     ohai (>= 0.0.0)
-  tar (0.6.0)
   timezone-ii (0.2.0)
   unattended_upgrades (0.2.0)
+  user (0.3.0)
   windows (1.36.6)
     chef_handler (>= 0.0.0)
   yum (3.5.3)

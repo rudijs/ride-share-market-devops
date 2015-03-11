@@ -17,11 +17,14 @@ node["firehol"]["network"]["consul"].each { |network_data|
 
 }
 
+# Customized startup script that restarts docker after firehol stop|start|restart
+template "/etc/init.d/firehol" do
+  source "etc_init.d_firehol.erb"
+  mode 755
+end
+
 template "/etc/default/firehol" do
   source "etc_default_firehol.erb"
-  owner "root"
-  group "root"
-  mode "0644"
   variables({
                 :start_firehol => node["firehol"]["start_firehol"]
             })
@@ -29,12 +32,11 @@ end
 
 template "/etc/firehol/firehol.conf" do
   source "firehol.conf.erb"
-  owner "root"
-  group "root"
-  mode "0644"
   variables({
                 :virtual_box_hosts => node["firehol"]["virtual_box_hosts"],
                 :hosts => node["secrets"]["data"]['firehol']['hosts'],
                 :consul_hosts => consul_hosts.join(" ")
             })
+  notifies :restart, "service[firehol]", :immediately
+  notifies :restart, "service[docker]"
 end
