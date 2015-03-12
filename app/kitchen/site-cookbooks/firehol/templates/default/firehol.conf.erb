@@ -27,6 +27,8 @@ HTTP_ACCESS="${ADMIN_HOSTS}"
 
 RABBITMQ_ACCESS="${ADMIN_HOSTS}"
 
+DOCKER_PRIVATE_REGISTRY_ACCESS="${ADMIN_HOSTS}"
+
 KIBANA_ACCESS="${ADMIN_HOSTS}"
 
 ICMP_ACCESS="${ADMIN_HOSTS}"
@@ -42,6 +44,10 @@ internet_interface="eth0+"
 
 lan_interface="eth1"
 
+docker_interface="docker+"
+
+docker_virtual_subnets="veth+"
+
 # CUSTOM SERVICES
 #================
 
@@ -53,6 +59,10 @@ client_kibana_ports="default 5601"
 
 server_rabbitmq_ports="tcp/15672"
 client_rabbitmq_ports="default 15672"
+
+# Docker Private Registry
+server_dockerpr_ports="tcp/5000"
+client_dockerpr_ports="default 5000"
 
 # consul.io - Health checking, service discovery, key/value store
 server_consul_ports="tcp/8300 udp/8300 tcp/8301 udp/8301 tcp/8302 udp/8302 tcp/8400 udp/8400 tcp/8500 udp/8500 tcp/8600 udp/8600"
@@ -112,6 +122,12 @@ FIREHOL_LOG_BURST="5"
 interface "${lan_interface}" lan
         policy accept
 
+interface "${docker_interface}" docker
+    policy accept
+
+interface "${docker_virtual_subnets}" veth
+    policy accept
+
 interface "${internet_interface}" internet src not "${newunroutable_ips}" "${internet_params[@]}"
 
         protection "${internet_protections}" ${internet_requests}
@@ -134,6 +150,9 @@ interface "${internet_interface}" internet src not "${newunroutable_ips}" "${int
 
         # RabbitMQ Web Admin
         server rabbitmq accept src "${RABBITMQ_ACCESS}"
+
+        # Docker Private Registry
+        server dockerpr accept src "${DOCKER_PRIVATE_REGISTRY_ACCESS}"
 
         # Kibana
         server kibana accept src "${KIBANA_ACCESS}"

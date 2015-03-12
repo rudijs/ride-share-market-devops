@@ -38,5 +38,4 @@ template "/etc/firehol/firehol.conf" do
                 :consul_hosts => consul_hosts.join(" ")
             })
   notifies :restart, "service[firehol]", :immediately
-  notifies :restart, "service[docker]"
 end

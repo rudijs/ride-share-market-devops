@@ -18,6 +18,12 @@ DESC=Firewall
 
 test -x /sbin/firehol || exit 0
 
+RESTART_DOCKER=false
+
+if [ -x /usr/bin/docker ]; then
+    RESTART_DOCKER=true
+fi
+
 set -e
 
 [ -r /etc/default/firehol ] && . /etc/default/firehol
@@ -42,16 +48,20 @@ case "$COMMAND" in
   else
     log_daemon_msg "Starting $DESC" "$NAME"
     /sbin/firehol start "$@" >/dev/null || log_end_msg 1
-    log_daemon_msg "Restarting Docker"
-    /usr/sbin/service docker restart > /dev/null 2>&1
+    if $RESTART_DOCKER; then
+        log_daemon_msg "Restarting Docker"
+        /usr/sbin/service docker restart > /dev/null 2>&1
+    fi
     log_end_msg 0
   fi
   ;;
   stop)
   log_daemon_msg "Stopping $DESC" "$NAME"
   /sbin/firehol stop "$@" >/dev/null || log_end_msg 1
-  log_daemon_msg "Restarting Docker"
-  /usr/sbin/service docker restart > /dev/null 2>&1
+  if $RESTART_DOCKER; then
+    log_daemon_msg "Restarting Docker"
+    /usr/sbin/service docker restart > /dev/null 2>&1
+  fi
   log_end_msg 0
   ;;
   helpme|wizard)
@@ -65,8 +75,10 @@ case "$COMMAND" in
   else
     log_daemon_msg "Restarting $DESC configuration"
     /sbin/firehol restart "$@" >/dev/null || log_end_msg 1
-    log_daemon_msg "Restarting Docker"
-    /usr/sbin/service docker restart > /dev/null 2>&1
+    if $RESTART_DOCKER; then
+        log_daemon_msg "Restarting Docker"
+        /usr/sbin/service docker restart > /dev/null 2>&1
+    fi
     log_action_end_msg 0
   fi
   ;;
