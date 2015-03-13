@@ -1,3 +1,7 @@
 # Ride Share Market
-192.168.33.10  vbox.ridesharemarket.com app01.dev.loc.ridesharemarket.com
 188.166.45.226 redline.ridesharemarket.com redline
+192.168.33.10  vbox.ridesharemarket.com
+192.168.33.10  rmq01.dev.loc.ridesharemarket.com
+192.168.33.10  graphite.ridesharemarket.com
+127.0.0.1      api01.dev.loc.ridesharemarket.com
+127.0.0.1      www.dev.loc.ridesharemarket.com
