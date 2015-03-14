@@ -6,8 +6,10 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-directory "/srv/ride-share-market-data/log" do
-  recursive true
-  owner "rsm-data"
-  group "rsm-data"
-end
+%w{ride-share-market-api ride-share-market-data}.each {|directory|
+  directory "/srv/#{directory}/log" do
+    recursive true
+    owner "rsm-data"
+    group "rsm-data"
+  end
+}
