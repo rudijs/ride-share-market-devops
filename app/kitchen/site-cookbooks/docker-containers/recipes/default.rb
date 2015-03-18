@@ -6,7 +6,7 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-%w{ride-share-market-api ride-share-market-data}.each {|directory|
+%w{ride-share-market-data ride-share-market-api ride-share-market-app}.each {|directory|
   directory "/srv/#{directory}/log" do
     recursive true
     owner "rsm-data"
