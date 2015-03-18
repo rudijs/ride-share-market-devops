@@ -13,7 +13,7 @@ RUN apt-get -yqq install wget \
 && apt-get -yqq update \
 && apt-get -yqq install logstash
 
-ENV CONF_REFRESHED_AT 2015-03-14.2
+ENV CONF_REFRESHED_AT 2015-03-18.4
 COPY logstash.conf /etc/
 WORKDIR /opt/logstash
 ENTRYPOINT [ "bin/logstash" ]
