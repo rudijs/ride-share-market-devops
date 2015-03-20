@@ -1,5 +1,6 @@
 source "https://api.berkshelf.com"
 
+cookbook "sysdig"
 cookbook "chef-client"
 cookbook "timezone-ii"
 cookbook "hostname"

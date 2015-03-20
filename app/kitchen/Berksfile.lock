@@ -8,6 +8,7 @@ DEPENDENCIES
   postfix
   rabbitmq
   statsdaemon-bitly
+  sysdig
   timezone-ii
   unattended_upgrades
   user
@@ -97,6 +98,10 @@ GRAPH
     golang (>= 0.0.0)
   sysctl (0.6.2)
     ohai (>= 0.0.0)
+  sysdig (0.3.1)
+    apt (>= 0.0.0)
+    yum (>= 0.0.0)
+    yum-epel (>= 0.0.0)
   timezone-ii (0.2.0)
   unattended_upgrades (0.2.0)
   user (0.3.0)

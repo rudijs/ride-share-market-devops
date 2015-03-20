@@ -6,6 +6,7 @@ description      'Installs/Configures common'
 long_description 'Installs/Configures common'
 version          '0.1.0'
 
+depends 'sysdig'
 depends 'chef-client'
 depends 'hostname'
 depends 'timezone-ii'

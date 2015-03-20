@@ -6,6 +6,7 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+include_recipe "sysdig"
 include_recipe "chef-client"
 include_recipe "chef-client::delete_validation"
 include_recipe "timezone-ii"
