@@ -1,0 +1,28 @@
+FROM ubuntu:14.04
+MAINTAINER Ride Share Market "systemsadmin@ridesharemarket.com"
+
+# APT cache
+ENV APT_REFRESHED_AT 2015-03-22.9
+RUN apt-get -yqq update
+
+# Install Nginx
+RUN \
+    apt-get install -y --no-install-recommends software-properties-common && \
+    add-apt-repository ppa:nginx/stable  && \
+    apt-get -yqq update && \
+    apt-get install -y nginx && \
+    rm -rf /var/lib/apt/lists/* && \
+    echo "\ndaemon off;" >> /etc/nginx/nginx.conf && \
+    chown -R www-data.www-data /var/lib/nginx
+
+COPY ridesharemarket.com.conf /etc/nginx/sites-available/ridesharemarket.com
+RUN ln -s /etc/nginx/sites-available/ridesharemarket.com /etc/nginx/sites-enabled/ridesharemarket.com
+
+# Define mountable directories.
+#VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx", "/var/www/html"]
+
+# Define working directory.
+WORKDIR /etc/nginx
+
+# Define default command.
+CMD ["nginx"]

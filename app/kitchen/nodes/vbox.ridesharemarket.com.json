@@ -35,7 +35,7 @@
     "recipe[relk]",
     "recipe[metrics]",
     "recipe[mongodb]",
-    "recipe[docker-wrapper]",
-    "recipe[docker-containers]"
+    "recipe[docker-wrapper]"
+//    "recipe[docker-containers]"
   ]
 }
