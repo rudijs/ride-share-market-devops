@@ -44,3 +44,8 @@ To list all tags for a given image in the private registry:
 To delete an image from the private registry.
 
 - `curl -X DELETE 192.168.33.10:5000/v1/repositories/rudijs/rsm-nginx/tags/x.x.x`
+
+Fire up a quick container that will remove itself up on close.
+
+- `sudo docker run -i -t --rm ubuntu:14.04 /bin/bash`
+
