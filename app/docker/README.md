@@ -19,9 +19,7 @@ Creating a custom bridge for the Docker daemon to use (conflicting when Astrill 
 Add to */etc/network/interfaces*
 
     auto bridge0
-    iface bridge0 inet static
-    address 192.168.5.1
-    netmask 255.0.0.0
+    iface bridge0 inet manual
     pre-up brctl addbr bridge0
     pre-up ip addr add 192.168.5.1/24 dev bridge0
     post-down ip link set dev bridge0 down
