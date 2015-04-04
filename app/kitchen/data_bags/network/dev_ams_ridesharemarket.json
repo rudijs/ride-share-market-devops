@@ -18,7 +18,9 @@
       "id": "redline",
       "description": "NOC Server",
       "roles": [
-        "noc01"
+        "noc01",
+        "els01",
+        "log01"
       ],
       "cnames": [
         "noc.dev.ridesharemarket.com"
@@ -26,7 +28,7 @@
       "digitalOcean": {
         "id": "4299022",
         "ip": {
-          "eth0": "188.166.45.226",
+          "eth0": "178.62.202.20",
           "eth1": "10.133.190.73"
         },
         "size": "1gb"
