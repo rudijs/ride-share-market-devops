@@ -13,13 +13,13 @@ class DigitalOcean
   end
 
   def strip_sub_domains(uri)
-    domain_parts = uri.split('.').reverse
-    "#{domain_parts[1]}.#{domain_parts[0]}"
+    domain_parts = uri.split('_')
+    domain_parts[2]
   end
 
   def hosts
     puts @data_hash["hosts"].map { |host|
-           puts "Hostname: #{host["id"]}.#{strip_sub_domains @data_hash["id"]} (Roles: #{host["roles"].join(",")})"
+           puts "Hostname: #{host["id"]}.#{strip_sub_domains @data_hash["id"]}.com (Roles: #{host["roles"].join(",")})"
          }
   end
 
@@ -46,7 +46,6 @@ class DigitalOcean
       "--" + do_boolean.to_s
     }
 
-    # cmd = "knife digital_ocean droplet create --yes --server-name #{name} --image #{digital_ocean[:image]} --size #{digital_ocean[:size]} --location #{digital_ocean[:location]} --ssh-keys #{digital_ocean[:ssh_keys].join(',')} #{digital_ocean_booleans.join(' ')} --bootstrap --run-list 'recipe[common]' --json-attributes '#{new_server[0]["chefJsonAttributes"].to_json}'"
     cmd = "knife digital_ocean droplet create --yes --server-name #{name} --image #{digital_ocean[:image]} --size #{digital_ocean[:size]} --location #{digital_ocean[:location]} --ssh-keys #{digital_ocean[:ssh_keys].join(',')} #{digital_ocean_booleans.join(' ')}"
     puts "==> #{cmd}"; system cmd
 
@@ -109,7 +108,6 @@ class DigitalOcean
     puts "==> #{cmd}"; system cmd
 
   end
-
 
   def uptime
     @data_hash["hosts"].each { |host|

@@ -3,9 +3,12 @@
 - Provision the server.
 - `./devops.rb server_create redline`
 - Update data_bags/network json file with the Digital Ocean Instance ID.
-- Update data_bags/network json file with the Digital public IP address.
-- Update /etc/hosts
-- `./network_hosts.rb | sudo tee -a /etc/hosts && sudo vi /etc/hosts`
+- Update data_bags/network json file with the Digital Ocean public IP address.
+- Update developer workstation */etc/hosts*
+- `../lib/network_hosts.rb | sudo tee -a /etc/hosts && sudo vi /etc/hosts`
+- Get the LAN IP address from the new server
+- `ssh -v root@redline ifconfig eth1 | grep 'inet\ addr'`
+- Update data_bags/network json file with the Digital Ocean private LAN IP address.
 - Update DNS (see below).
 - Create Ubuntu user account (for all future devops operations)
 - `./devops.rb create_ubuntu_account --user root --hostname redline`

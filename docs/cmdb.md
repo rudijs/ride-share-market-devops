@@ -21,10 +21,4 @@
 - vmm – Virtual Machine Manager
 - web – Web Server
 - els - Elastic Search Node
-
-Local hosts configuration:
-
-- /etc/hosts
-- C:\Windows\System32\Drivers\etc\hosts
-
-[/etc/hosts](hosts.txt)
+- reg - Private Docker Registry

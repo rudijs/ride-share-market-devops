@@ -38,20 +38,14 @@ class NetworkHosts
     unique_name = [id, "#{id}.#{uri[:domain]}"]
   end
 
-  def lan_hosts(hosts)
-    hosts.map {|host|
-      "lan.#{host}"
-    }
-  end
-
   def hosts_entries
+
+    hosts_comment = "### Ride Share Market: #{Time.now.strftime("%Y-%m-%d")}"
+    puts hosts_comment
+
     network_data_bags.each { |data_bag|
       obj = read_json(data_bag)
       uri = network_uri(obj["id"])
-
-      hosts_comment = "### Ride Share Market: #{Time.now.strftime("%Y-%m-%d")}"
-
-      puts hosts_comment
 
       obj["hosts"].each {|host|
 
@@ -69,12 +63,8 @@ class NetworkHosts
           puts "#{host["digitalOcean"]["ip"]["eth0"]} #{hosts.join(" ")}"
         end
 
-        if IPAddress.valid? host["digitalOcean"]["ip"]["eth1"]
-          puts "#{host["digitalOcean"]["ip"]["eth0"]} #{lan_hosts(hosts).join(" ")}"
-        end
       }
 
-      puts hosts_comment
     }
 
   end

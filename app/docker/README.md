@@ -21,7 +21,7 @@ Add to */etc/network/interfaces*
     auto bridge0
     iface bridge0 inet manual
     pre-up brctl addbr bridge0
-    pre-up ip addr add 192.168.5.1/24 dev bridge0
+    pre-up ip addr add 192.168.5.1/24 brd + dev bridge0
     post-down ip link set dev bridge0 down
     post-down brctl delbr bridge0
     post-down iptables -t nat -F POSTROUTING
