@@ -2,10 +2,9 @@
 
 ## Install
 
-Add the [hosts.txt](hosts.txt) entries to your */etc/hosts* file.
-
-
 - `cd app/kitchen`
+- Update developer workstation */etc/hosts*
+- `../lib/network_hosts.rb | sudo tee -a /etc/hosts && sudo vi /etc/hosts`
 - `ssh-keygen -f ~/.ssh/known_hosts -R vbox.ridesharemarket.com`
 - `ssh-keygen -f ~/.ssh/known_hosts -R 192.168.33.10`
 - `vagrant plugin install vagrant-vbguest`
@@ -16,3 +15,13 @@ Add the [hosts.txt](hosts.txt) entries to your */etc/hosts* file.
 - `./devops.rb bootstrap`
 - `berks vendor`
 - `./devops.rb cook`
+
+## Web Admin
+
+- [RabbitMQ](http://vbox.ridesharemarket.com:15672)
+- [Kibana](http://vbox.ridesharemarket.com:5601)
+- [Graphite](http://vbox.ridesharemarket.com:8080)
+
+## Next steps: Docker
+
+[Docker Install](../app/docker/README.md)

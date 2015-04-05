@@ -6,9 +6,13 @@
       "description": "Local Developer Server",
       "roles": [
         "noc01",
+        "rmq01",
         "els01",
         "log01",
-        "rmq01"
+        "met01",
+        "www01",
+        "api01",
+        "rpc01"
       ],
       "cnames": [
         "vbox.ridesharemarket.com"
