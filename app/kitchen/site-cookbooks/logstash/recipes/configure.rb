@@ -21,7 +21,7 @@ rules.flatten.each do |f|
     mode '0644'
     variables({
                   :settings => node["logstash"]["settings"],
-                  :rabbitmq_user => node["secrets"]["data"]['rabbitmq']['enabledUsers'][1]
+                  :rabbitmq_user => node["secrets"]["data"]['rabbitmq']['enabledUsers'][2]
               })
     notifies :restart, "service[logstash]"
   end
