@@ -22,6 +22,10 @@
 - [Kibana](http://vbox.ridesharemarket.com:5601)
 - [Graphite](http://vbox.ridesharemarket.com:8080)
 
-## Next steps: Docker
+## Docker
 
 [Docker Install](../app/docker/README.md)
+
+## Deployment
+
+[Deployment](deployment.md)

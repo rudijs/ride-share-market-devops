@@ -2,7 +2,7 @@ FROM ubuntu:14.04
 MAINTAINER Ride Share Market "systemsadmin@ridesharemarket.com"
 
 # APT cache
-ENV APT_REFRESHED_AT 2015-03-22.9
+ENV APT_REFRESHED_AT 2015-04-05.1
 RUN apt-get -yqq update
 
 # Install Nginx
@@ -13,7 +13,9 @@ RUN \
     apt-get install -y nginx && \
     rm -rf /var/lib/apt/lists/* && \
     echo "\ndaemon off;" >> /etc/nginx/nginx.conf && \
-    chown -R www-data.www-data /var/lib/nginx
+    chown -R www-data.www-data /var/lib/nginx && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 COPY ridesharemarket.com.conf /etc/nginx/sites-available/ridesharemarket.com
 RUN ln -s /etc/nginx/sites-available/ridesharemarket.com /etc/nginx/sites-enabled/ridesharemarket.com

@@ -2,6 +2,8 @@
 
 [Developer Workstation](install_developer_workstation.md)
 
+[Remote Server: Private Registry](registry/README.md)
+
 ## Usage
 
 To list all images in the private registry:
