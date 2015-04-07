@@ -22,7 +22,7 @@ Deploy on remote server.
 
 - `sudo docker pull 192.168.33.10:5000/rudijs/rsm-nginx:x.x.x`
 - Initial.
-- `sudo docker run -d --restart always --name rsm-nginx --volumes-from rsm-app --link rsm-app:rsm-app -p 80:80 192.168.33.10:5000/rudijs/rsm-nginx:x.x.x`
+- `sudo docker run -d --restart always --name rsm-nginx --volumes-from rsm-app --link rsm-app:rsm-app --link rsm-api:rsm-api -p 80:80 -p 443:443 192.168.33.10:5000/rudijs/rsm-nginx:x.x.x`
 - Replace running container.
 - `sudo docker rm -f -v rsm-nginx && sudo docker run -d --restart always --name rsm-nginx --volumes-from rsm-app --link rsm-app:rsm-app --link rsm-api:rsm-api -p 80:80 -p 443:443 192.168.33.10:5000/rudijs/rsm-nginx:x.x.x`
 

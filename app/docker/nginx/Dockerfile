@@ -21,6 +21,7 @@ RUN \
 COPY ridesharemarket.com.conf /etc/nginx/sites-available/ridesharemarket.com
 COPY ssl/ridesharemarket.com.cert /etc/nginx/ssl/ridesharemarket.com.cert
 COPY ssl/ridesharemarket.com.key /etc/nginx/ssl/ridesharemarket.com.key
+COPY ssl/dhparam.pem /etc/nginx/ssl/dhparam.pem
 RUN ln -s /etc/nginx/sites-available/ridesharemarket.com /etc/nginx/sites-enabled/ridesharemarket.com
 
 # Define mountable directories.
