@@ -24,11 +24,14 @@ COPY ssl/ridesharemarket.com.key /etc/nginx/ssl/ridesharemarket.com.key
 COPY ssl/dhparam.pem /etc/nginx/ssl/dhparam.pem
 RUN ln -s /etc/nginx/sites-available/ridesharemarket.com /etc/nginx/sites-enabled/ridesharemarket.com
 
+COPY docker-start.sh /etc/init.d/docker-start.sh
+
 # Define mountable directories.
-VOLUME "/var/log/nginx"
+VOLUME /var/log/nginx
 
 # Define working directory.
-WORKDIR /etc/nginx
+#WORKDIR /etc/nginx
 
 # Define default command.
-CMD ["nginx"]
+#CMD ["nginx"]
+CMD ["/etc/init.d/docker-start.sh"]

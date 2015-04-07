@@ -18,6 +18,7 @@ RUN \
 ENV CONF_REFRESHED_AT 2015-04-05.1
 
 COPY logstash.conf /etc/
+COPY pattern_nginx.txt /opt/logstash/patterns/nginx
 
 WORKDIR /opt/logstash
 
