@@ -29,9 +29,5 @@ COPY docker-start.sh /etc/init.d/docker-start.sh
 # Define mountable directories.
 VOLUME /var/log/nginx
 
-# Define working directory.
-#WORKDIR /etc/nginx
-
 # Define default command.
-#CMD ["nginx"]
 CMD ["/etc/init.d/docker-start.sh"]
