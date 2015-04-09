@@ -11,6 +11,7 @@ default["logstash"]["settings"]["rules"] = [
     "100_input_syslog.conf",
     "100_input_unattended_upgrades.conf",
     "100_input_rabbitmq.conf",
+    "100_input_lumberjack.conf",
     "200_filter_syslog.conf",
     "300_output_syslog.conf",
     # Input from log queue

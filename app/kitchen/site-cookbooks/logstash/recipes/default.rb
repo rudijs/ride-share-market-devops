@@ -15,3 +15,5 @@ include_recipe "logstash::install"
 include_recipe "logstash::configure"
 
 include_recipe "logstash::rsyslog"
+
+include_recipe "logstash::lumberjack"

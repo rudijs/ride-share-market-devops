@@ -8,6 +8,7 @@ CRON=`which cron`
 log_daemon_msg "Starting ${CRON}"
 $CRON
 
-# Start Node app with pm2
-log_daemon_msg "Starting NGINX"
-nginx
+# Start Nginx
+NGINX=`which nginx`
+log_daemon_msg "Starting ${NGINX}"
+$NGINX

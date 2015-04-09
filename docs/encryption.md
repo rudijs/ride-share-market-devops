@@ -1,28 +1,40 @@
-Chef Encryption Process
-=======================
+Encryption
+==========
 
 ##Overview
 
-Sensitive data used during the build processes, like passwords, ssh keys and application API keys, stored in git are encrypted.
+Sensitive data like passwords, ssh keys and application API keys are stored in git are encrypted.
 
 Encrypted data is stored in [Chef Encrypted Data Bags](http://docs.chef.io/data_bags.html)
 
 ##Encryption
 
-When Chef runs it will decrypt the data on the fly and use it.
+When the Chef Client runs it will decrypt the data on the fly and use it.
  
 In order for you to encrypt the data and for Chef to decrypt the data a shared password is required.
 
 The shared password is stored in KeePass, it is copied into the git repo for use (it will be git ignored and not committed).
 
-##Chef Client Use
+## Setup
 
 - Create new file: `kitchen/.chef/chef_secret_key.txt`
 - Copy the password from KeePass `Chef/chef_secret_key.txt` into `kitchen/.chef/chef_secret_key.txt`
-- At the start of a chef solo client run this secret key is uploaded to the target server.
-- At the end of chef solo client run the secret key is removed from the target server.
 
-##Developer Use
+## Chef-Solo Use
+
+At the start of a chef solo client run this secret key is uploaded to the target server.
+
+At the end of chef solo client run the secret key is removed from the target server.
+
+## Chef-Client (Chef Server) Use
+
+When the remote server is bootstrapped the *chef_secret_key.txt* is uploaded to the server and left in place there.
+
+Each regular Chef Client run will read the key and decrypt data_bags as required.
+
+Without the *chef_secret_key.txt* in place the Chef Client run will fail.
+
+## Developer Use
 
 Lets say you have data to encrypt that will be committed into git and Chef will use when it runs.
 
@@ -42,3 +54,12 @@ This plain text data needs to be encrypted then stored in the git repo.
 - The plain text json will be ignored, you can safely delete it and copy again from keepass as required.
 - Important: Please ensure KeePass is updated with the current data that is encrypted.
 
+## SSL and SSH Key Management
+
+These keys need to be store *in a single line* in JSON file format.
+
+We need to convert a multi line file to a single line.
+
+- Prepare a multi line SSL or SSH key for encrypted JSON.
+- Example SSL key to a single line of text:
+- `tr "\n" ":" < rsm-logstash-forwarder.crt | sed -e 's/:/\\n/g'`

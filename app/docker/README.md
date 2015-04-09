@@ -2,7 +2,13 @@
 
 [Developer Workstation](install_developer_workstation.md)
 
-[Remote Server: Private Registry](registry/README.md)
+[Docker Private Registry](registry/README.md)
+
+## Dockerui
+
+- `sudo docker pull dockerui/dockerui`
+- `sudo docker run -d --restart always --name rsm-docker-ui -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock dockerui/dockerui`
+- [http://vbox.ridesharemarket.com:9000](http://vbox.ridesharemarket.com:9000)
 
 ## Usage
 

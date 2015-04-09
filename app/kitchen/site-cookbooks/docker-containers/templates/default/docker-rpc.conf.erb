@@ -1,8 +1,0 @@
-description "RSM-DATA RPC Docker Container"
-author "systemsadmin@ridesharemarket.com"
-start on filesystem and started docker
-stop on runlevel [!2345]
-respawn
-script
-  /usr/bin/docker start rpc
-end script
