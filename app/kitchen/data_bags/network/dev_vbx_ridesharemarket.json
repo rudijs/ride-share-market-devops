@@ -1,0 +1,29 @@
+{
+  "id": "dev_vbx_ridesharemarket",
+  "hosts": [
+    {
+      "id": "vbox",
+      "description": "Local Developer Virtual Machine Server",
+      "roles": [
+        "noc01",
+        "rmq01",
+        "els01",
+        "log01",
+        "met01",
+        "www01",
+        "api01",
+        "rpc01"
+      ],
+      "cnames": [
+        "www.dev.vbx.ridesharemarket.com",
+        "api.dev.vbx.ridesharemarket.com"
+      ],
+      "digitalOcean": {
+        "id": "xxxxxx",
+        "ip": {
+          "eth0": "192.168.33.10"
+        }
+      }
+    }
+  ]
+}
