@@ -15,14 +15,19 @@ RUN \
     echo "\ndaemon off;" >> /etc/nginx/nginx.conf && \
     chown -R www-data.www-data /var/lib/nginx && \
     mkdir /etc/nginx/ssl && \
+    rm /etc/nginx/sites-enabled/default && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-COPY ridesharemarket.com.conf /etc/nginx/sites-available/ridesharemarket.com
 COPY ssl/ridesharemarket.com.cert /etc/nginx/ssl/ridesharemarket.com.cert
 COPY ssl/ridesharemarket.com.key /etc/nginx/ssl/ridesharemarket.com.key
 COPY ssl/dhparam.pem /etc/nginx/ssl/dhparam.pem
-RUN ln -s /etc/nginx/sites-available/ridesharemarket.com /etc/nginx/sites-enabled/ridesharemarket.com
+
+COPY sites-available/ridesharemarket.com.conf /etc/nginx/sites-available/ridesharemarket.com
+COPY sites-available/api.ridesharemarket.com.conf /etc/nginx/sites-available/api.ridesharemarket.com
+RUN \
+    ln -s /etc/nginx/sites-available/ridesharemarket.com /etc/nginx/sites-enabled/ridesharemarket.com && \
+    ln -s /etc/nginx/sites-available/api.ridesharemarket.com /etc/nginx/sites-enabled/api.ridesharemarket.com
 
 COPY docker-start.sh /etc/init.d/docker-start.sh
 
