@@ -1,0 +1,23 @@
+digraph G {
+    User [shape=box];
+    RabbitMQ [shape=octagon];
+    Database [shape=hexagon];
+
+    edge [color=green];
+    User -> AngularJS_App;
+    AngularJS_App -> API [label="http"];
+
+    /* TODO
+    API -> Cache [style=dotted];
+    edge [color=red];
+    Cache -> API [style=dotted];
+    */
+
+    edge [color=green];
+    API -> RabbitMQ [label="amqp rpc"];
+    RabbitMQ -> RPC_Consumer [label="amqp rpc"];
+
+    RPC_Consumer -> Database [label="driver"];
+    edge [color=red];
+    Database-> RPC_Consumer -> RabbitMQ -> API -> AngularJS_App -> User;
+}
