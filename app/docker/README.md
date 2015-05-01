@@ -12,6 +12,17 @@
 
 ## Usage
 
+### Kernel Upgrade
+
+Issue: All images and containers disappeared after host kernel upgrade
+
+Solution: Inside the VM install the aufs kernel module that docker requires but can be lost during kernel upgrades. 
+
+Not sure why the package manager misses this dependency.
+
+- `sudo apt-get -y install linux-image-extra-$(uname -r)`
+- `sudo init 6`
+
 ### Private Docker Registry
 
 To list all images in the private registry:
