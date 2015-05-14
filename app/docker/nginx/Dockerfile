@@ -2,7 +2,7 @@ FROM ubuntu:14.04
 MAINTAINER Ride Share Market "systemsadmin@ridesharemarket.com"
 
 # APT cache
-ENV APT_REFRESHED_AT 2015-04-05.1
+ENV APT_REFRESHED_AT 2015-05-13.1
 RUN apt-get -yqq update
 
 # Install Nginx
@@ -19,7 +19,7 @@ RUN \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-COPY ssl/ridesharemarket.com.cert /etc/nginx/ssl/ridesharemarket.com.cert
+COPY ssl/ridesharemarket.com.crt /etc/nginx/ssl/ridesharemarket.com.crt
 COPY ssl/ridesharemarket.com.key /etc/nginx/ssl/ridesharemarket.com.key
 COPY ssl/dhparam.pem /etc/nginx/ssl/dhparam.pem
 
