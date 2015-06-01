@@ -1,18 +1,17 @@
-ssl_keys_path = %w(/etc/pki/tls/certs/logstash-forwarder /etc/pki/tls/private/logstash-forwarder)
-
-ssl_keys_path.each {|path|
-  directory path do
-    recursive true
-  end
-}
-
+# Lumberjack TLS certificate
 ssl_cert  = node["secrets"]["data"]["ssl"]["lumberjack"]["certificate"]
-ssl_key   = node["secrets"]["data"]["ssl"]["lumberjack"]["key"]
-
-file ssl_cert["name"] do
+directory ssl_cert["path"] do
+  recursive true
+end
+file File.join(ssl_cert["path"], ssl_cert["name"]) do
   content ssl_cert["data"]
 end
 
-file ssl_key["name"] do
+# Lumberjack TLS key
+ssl_key   = node["secrets"]["data"]["ssl"]["lumberjack"]["key"]
+directory ssl_key["path"] do
+  recursive true
+end
+file File.join(ssl_key["path"], ssl_key["name"]) do
   content ssl_key["data"]
 end
