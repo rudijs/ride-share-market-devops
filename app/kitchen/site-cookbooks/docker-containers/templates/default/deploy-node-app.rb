@@ -38,7 +38,8 @@ cmd = "sudo docker pull #{docker_image}"
 run_command(cmd)
 
 # Note: the *--cap-add SYS_PTRACE --security-opt apparmor:unconfined* flags above are required for pm2. See [here](https://github.com/Unitech/PM2/issues/1086)
-cmd = "sudo docker rm -f -v #{container_name} && sudo docker run -d --restart always --name #{container_name} --cap-add SYS_PTRACE --security-opt apparmor:unconfined #{docker_image}"
+cmd = "sudo docker rm -f -v #{container_name} && sudo docker run -d --restart always --name #{container_name} --env 'NODE_ENV=vbx' --cap-add SYS_PTRACE --security-opt apparmor:unconfined #{docker_image}"
+
 run_command(cmd)
 
 run_command(nginx_restart_cmd)
