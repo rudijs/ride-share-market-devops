@@ -1,10 +1,10 @@
-#!/usr/bin/env ruby
+#!/opt/chef/embedded/bin/ruby
 
 require "json"
 
 class Docker
   def initialize
-    @images = "#{Dir.pwd}/../kitchen/data_bags/docker/rsm.json"
+    @images = "#{Dir.pwd}/rsm.json"
     @images_meta_data = read_json(@images)
   end
 
@@ -20,14 +20,16 @@ class Docker
 
   def deploy
     puts "sudo docker run -d --restart always --name rsm-data --cap-add SYS_PTRACE --security-opt apparmor:unconfined #{@images_meta_data["images"]["rsm-data"]}"
+    puts "sudo docker run -d --restart always --name rsm-data-logstash-forwarder --add-host vbox.ridesharemarket.com:192.168.33.10 -v /etc/pki/tls:/etc/pki/tls --volumes-from rsm-data -t #{@images_meta_data["images"]["rsm-logstash-forwarder"]} '--quiet=true' '--config=/srv/ride-share-market-data/config/logstash-forwarder.json'"
 
     puts "sudo docker run -d --restart always --name rsm-api --env 'NODE_ENV=vbx' --add-host met01.dev.vbx.ridesharemarket.com:192.168.33.10 --cap-add SYS_PTRACE --security-opt apparmor:unconfined #{@images_meta_data["images"]["rsm-api"]}"
     puts "sudo docker run -d --restart always --name rsm-api-logstash-forwarder --add-host vbox.ridesharemarket.com:192.168.33.10 -v /etc/pki/tls:/etc/pki/tls --volumes-from rsm-api -t #{@images_meta_data["images"]["rsm-logstash-forwarder"]} '--quiet=true' '--config=/srv/ride-share-market-api/config/logstash-forwarder.json'"
 
     puts "sudo docker run -d --restart always --name rsm-app --env 'NODE_ENV=vbx' --cap-add SYS_PTRACE --security-opt apparmor:unconfined #{@images_meta_data["images"]["rsm-app"]}"
-    puts "sudo docker run -d --restart always --name rsm-app-logstash-forwarder --add-host vbox.ridesharemarket.com:192.168.33.10 -v /etc/pki/tls:/etc/pki/tls --volumes-from rsm-app -t #{@images_meta_data["images"]["rsm-logstash-forwarder"]} '--quiet=true' '--config=/srv/ride-share-market-app/config/rsm-app-logstash-forwarder.json'"
+    puts "sudo docker run -d --restart always --name rsm-app-logstash-forwarder --add-host vbox.ridesharemarket.com:192.168.33.10 -v /etc/pki/tls:/etc/pki/tls --volumes-from rsm-app -t #{@images_meta_data["images"]["rsm-logstash-forwarder"]} '--quiet=true' '--config=/srv/ride-share-market-app/config/logstash-forwarder.json'"
 
     puts "sudo docker run -d --restart always --name rsm-nginx --volumes-from rsm-app --link rsm-app:rsm-app --link rsm-api:rsm-api -p 80:80 -p 443:443 #{@images_meta_data["images"]["rsm-nginx"]}"
+    puts "sudo docker run -d --restart always --name rsm-nginx-logstash-forwarder --add-host vbox.ridesharemarket.com:192.168.33.10 -v /etc/pki/tls:/etc/pki/tls --volumes-from rsm-nginx -t #{@images_meta_data["images"]["rsm-logstash-forwarder"]} '--quiet=true' '--config=/etc/nginx/logstash-forwarder.json'"
   end
 
   def destroy_containers

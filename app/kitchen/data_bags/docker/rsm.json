@@ -1,18 +1,20 @@
 {
-  "id": "images",
+  "id": "rsm",
   "images": {
-    "rsm-data": "192.168.33.10:5000/rudijs/rsm-data:0.0.9",
+    "rsm-data": "192.168.33.10:5000/rudijs/rsm-data:0.0.10",
     "rsm-api": "192.168.33.10:5000/rudijs/rsm-api:0.0.33",
-    "rsm-app": "192.168.33.10:5000/rudijs/rsm-app:0.0.54",
+    "rsm-app": "192.168.33.10:5000/rudijs/rsm-app:0.0.55",
     "rsm-logstash-forwarder": "192.168.33.10:5000/rudijs/rsm-logstash-forwarder:0.0.6",
-    "rsm-nginx": "192.168.33.10:5000/rudijs/rsm-nginx:0.0.31"
+    "rsm-nginx": "192.168.33.10:5000/rudijs/rsm-nginx:0.0.37"
   },
   "containers": [
+    "rsm-nginx-logstash-forwarder",
     "rsm-nginx",
     "rsm-api-logstash-forwarder",
     "rsm-api",
     "rsm-app-logstash-forwarder",
     "rsm-app",
+    "rsm-data-logstash-forwarder",
     "rsm-data"
   ]
 }

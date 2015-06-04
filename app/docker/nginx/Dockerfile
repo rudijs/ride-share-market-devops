@@ -19,6 +19,8 @@ RUN \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+COPY conf.d/log_format_logstash_json.conf /etc/nginx/conf.d/log_format_logstash_json.conf
+COPY logstash-forwarder.json /etc/nginx/logstash-forwarder.json
 COPY ssl/ridesharemarket.com.crt /etc/nginx/ssl/ridesharemarket.com.crt
 COPY ssl/ridesharemarket.com.key /etc/nginx/ssl/ridesharemarket.com.key
 COPY ssl/dhparam.pem /etc/nginx/ssl/dhparam.pem
@@ -32,7 +34,7 @@ RUN \
 COPY docker-start.sh /etc/init.d/docker-start.sh
 
 # Define mountable directories.
-VOLUME /var/log/nginx
+VOLUME ["/etc/nginx", "/var/log/nginx"]
 
 # Define default command.
 CMD ["/etc/init.d/docker-start.sh"]
