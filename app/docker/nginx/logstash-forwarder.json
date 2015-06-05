@@ -11,13 +11,13 @@
       "paths": [
         "/var/log/nginx/access*.log"
       ],
-      "fields": {"type": "nginx-access"}
+      "fields": {"type": "rsm-nginx-access"}
     },
     {
       "paths": [
         "/var/log/nginx/error*.log"
       ],
-      "fields": {"type": "nginx-error"}
+      "fields": {"type": "rsm-nginx-error"}
     }
   ]
 }

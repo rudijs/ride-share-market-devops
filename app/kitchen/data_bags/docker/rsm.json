@@ -5,7 +5,7 @@
     "rsm-api": "192.168.33.10:5000/rudijs/rsm-api:0.0.33",
     "rsm-app": "192.168.33.10:5000/rudijs/rsm-app:0.0.55",
     "rsm-logstash-forwarder": "192.168.33.10:5000/rudijs/rsm-logstash-forwarder:0.0.6",
-    "rsm-nginx": "192.168.33.10:5000/rudijs/rsm-nginx:0.0.37"
+    "rsm-nginx": "192.168.33.10:5000/rudijs/rsm-nginx:0.0.38"
   },
   "containers": [
     "rsm-nginx-logstash-forwarder",
