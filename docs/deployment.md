@@ -20,17 +20,14 @@ The docker images and container names to be used for deployment are stored in a 
 
 Update [rsm.json](../app/kitchen/data_bags/docker/rsm.json) to the required versions.
 
-Copy rsm.json to the application server:
-
-- `cd app/kitchen`
-- `scp -v data_bags/docker/rsm.json vagrant@192.168.33.10:~`
-
-### Remote server
+On the Remote server:
  
 1. Pull down the images from the local docker registry.
 2. Remove any running containers in order.
 3. Start containers in order.
 
-These three steps are in the ruby script `~/docker.rb`
+These steps are handled using Capistrano
 
-- `./docker.rb > deploy.sh && sh deploy.sh`
+- `cd app/kitchen`
+- Virtual Machine (local)
+- `bundle exec cap vbx docker_deploy`
