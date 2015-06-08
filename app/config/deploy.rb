@@ -2,13 +2,15 @@
 lock '3.4.0'
 
 set :application, 'ridesharemarket.com'
-#set :repo_url, 'git@example.com:me/my_repo.git'
+# set :repo_url, 'git@example.com:me/my_repo.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
 # set :deploy_to, '/var/www/my_app_name'
+
+set :ssh_options, {forward_agent: true}
 
 # Default value for :scm is :git
 # set :scm, :git
@@ -30,6 +32,7 @@ set :application, 'ridesharemarket.com'
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
+set :default_env, {path: "/opt/chef/embedded/bin:$PATH"}
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
@@ -45,6 +48,48 @@ namespace :deploy do
     end
   end
 
+end
+
+set :rsm_web_app_repos, fetch(:rsm_web_app_repos, []).push(
+                          {
+                              git: 'git@github.com:rudijs/ride-share-market-api.git',
+                              config_src: File.join(File.dirname(__FILE__), "/../../../ride-share-market-api/config/env/#{fetch(:stage)}.json"),
+                              config_dst: "ride-share-market-api/config/env"
+                          },
+                          {
+                              git: 'git@github.com:rudijs/ride-share-market-app.git',
+                              config_src: File.join(File.dirname(__FILE__), "/../../../ride-share-market-app/config/env/#{fetch(:stage)}.json"),
+                              config_dst: "ride-share-market-app/config/env"
+                          }
+                      )
+
+set :docker_repos, fetch(:rsm_docker_repos, []).push(
+                     'docker/iojs'
+                 )
+
+desc "Docker Repos"
+task :docker_repos do
+  on roles(:app) do |host|
+    fetch(:docker_repos, []).each do |repo|
+      if test "[ ! -d docker ]"
+        execute :mkdir, "docker"
+      end
+      upload! repo, repo, recursive: true
+    end
+  end
+end
+
+
+desc "RSM Repos"
+task :rsm_repos do
+  on roles(:app) do |host|
+    puts "Host: #{host} ==> #{fetch(:stage)}"
+    fetch(:rsm_web_app_repos, []).each do |repo|
+      puts "git clone -b #{fetch(:branch)} #{repo[:git]}"
+      upload! repo[:config_src], repo[:config_dst]
+      upload! repo[:config_src], "/tmp/xyz/abc/1.json"
+    end
+  end
 end
 
 desc "Report Uptimes"

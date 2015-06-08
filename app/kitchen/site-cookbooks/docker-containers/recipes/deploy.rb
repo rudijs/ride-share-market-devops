@@ -1,8 +1,15 @@
 node["docker"]["users"].each {|user|
-  template "#{user[:home]}/docker.rb" do
-    source "docker.rb"
+
+  template "#{user[:home]}/docker-deploy.rb" do
+    source "docker-deploy.rb"
     owner user[:user]
     group user[:user]
-    mode 0755
   end
+
+  template "#{user[:home]}/docker_registry.rb" do
+    source "docker_registry.rb"
+    owner user[:user]
+    group user[:user]
+  end
+
 }

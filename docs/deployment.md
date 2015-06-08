@@ -28,6 +28,6 @@ On the Remote server:
 
 These steps are handled using Capistrano
 
-- `cd app/kitchen`
+- `cd app`
 - Virtual Machine (local)
 - `bundle exec cap vbx docker_deploy`

@@ -31,11 +31,12 @@
     ]
   },
   "run_list": [
-    "recipe[common]",
-    "recipe[relk]",
-    "recipe[metrics]",
-    "recipe[mongodb]",
-    "recipe[docker-wrapper]",
+//    "recipe[common]",
+//    "recipe[relk]",
+//    "recipe[metrics]",
+//    "recipe[mongodb]",
+//    "recipe[docker-wrapper]",
+//    "recipe[git-repos]",
     "recipe[docker-containers::deploy]"
   ]
 }

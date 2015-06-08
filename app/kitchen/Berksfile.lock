@@ -7,6 +7,7 @@ DEPENDENCIES
   hostsfile
   postfix
   rabbitmq
+  ssh_known_hosts
   statsdaemon-bitly
   sysdig
   timezone-ii
@@ -80,6 +81,7 @@ GRAPH
   modules (0.2.0)
   ohai (2.0.1)
   packagecloud (0.0.18)
+  partial_search (1.0.8)
   polipo (0.1.0)
   postfix (3.6.2)
   python (1.4.6)
@@ -91,6 +93,8 @@ GRAPH
     yum-erlang_solutions (>= 0.0.0)
   runit (1.6.0)
     packagecloud (>= 0.0.0)
+  ssh_known_hosts (2.0.0)
+    partial_search (>= 0.0.0)
   statsdaemon-bitly (1.0.3)
     golang (>= 0.0.0)
   sysctl (0.6.2)
