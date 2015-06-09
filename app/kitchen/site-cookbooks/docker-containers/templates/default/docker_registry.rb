@@ -10,7 +10,7 @@ class DockerRegistry
   def get_image_current_version(image_name)
     uri = URI("http://#{@host}:#{@port}/v1/repositories/#{image_name}/tags")
     res = Net::HTTP.get_response(uri)
-    JSON.parse(res.body).keys.sort.pop
+    JSON.parse(res.body).keys.sort {|a,b| Gem::Version.new(a) <=> Gem::Version.new(b)}.pop
   end
 
 end
