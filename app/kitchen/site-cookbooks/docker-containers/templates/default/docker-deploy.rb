@@ -107,7 +107,7 @@ rsm_containers.each do |container|
 end
 
 # Deploy RSM Docker containers in specific order
-run_command dry_run, "sudo docker run -d --restart always --name rsm-data --cap-add SYS_PTRACE --security-opt apparmor:unconfined #{rsm_data_image}"
+run_command dry_run, "sudo docker run -d --restart always --name rsm-data --env 'NODE_ENV=#{node_application_env}' --cap-add SYS_PTRACE --security-opt apparmor:unconfined #{rsm_data_image}"
 run_command dry_run, "sudo docker run -d --restart always --name rsm-data-logstash-forwarder --add-host vbox.ridesharemarket.com:192.168.33.10 -v /etc/pki/tls:/etc/pki/tls --volumes-from rsm-data -t #{rsm_logstash_forwarder_image} '--quiet=true' '--config=/srv/ride-share-market-data/config/logstash-forwarder.json'"
 
 run_command dry_run, "sudo docker run -d --restart always --name rsm-api --env 'NODE_ENV=#{node_application_env}' --add-host met01.dev.vbx.ridesharemarket.com:192.168.33.10 --cap-add SYS_PTRACE --security-opt apparmor:unconfined #{rsm_api_image}"

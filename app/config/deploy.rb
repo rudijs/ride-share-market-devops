@@ -52,19 +52,29 @@ end
 
 set :rsm_web_app_repos, fetch(:rsm_web_app_repos, []).push(
                           {
-                              git: 'git@github.com:rudijs/ride-share-market-api.git',
+                              name: "ride-share-market-data",
+                              git: "git@github.com:rudijs/ride-share-market-data.git",
+                              config_src: File.join(File.dirname(__FILE__), "/../../../ride-share-market-data/config/env/#{fetch(:stage)}.json"),
+                              config_dst: "ride-share-market-data/config/env"
+                          },
+                          {
+                              name: "ride-share-market-api",
+                              git: "git@github.com:rudijs/ride-share-market-api.git",
                               config_src: File.join(File.dirname(__FILE__), "/../../../ride-share-market-api/config/env/#{fetch(:stage)}.json"),
                               config_dst: "ride-share-market-api/config/env"
                           },
                           {
-                              git: 'git@github.com:rudijs/ride-share-market-app.git',
+                              name: "ride-share-market-app",
+                              git: "git@github.com:rudijs/ride-share-market-app.git",
                               config_src: File.join(File.dirname(__FILE__), "/../../../ride-share-market-app/config/env/#{fetch(:stage)}.json"),
                               config_dst: "ride-share-market-app/config/env"
                           }
                       )
 
 set :docker_repos, fetch(:rsm_docker_repos, []).push(
-                     'docker/iojs'
+                     "docker/iojs",
+                     "docker/logstash-forwarder",
+                     "docker/nginx"
                  )
 
 desc "Docker Repos"
@@ -85,9 +95,16 @@ task :rsm_repos do
   on roles(:app) do |host|
     puts "Host: #{host} ==> #{fetch(:stage)}"
     fetch(:rsm_web_app_repos, []).each do |repo|
-      puts "git clone -b #{fetch(:branch)} #{repo[:git]}"
+      # Git clone or pull repo
+      if test "[ -d #{repo[:name]} ]"
+        within repo[:name] do
+          execute :git, :pull
+        end
+      else
+        execute :git, :clone, "-b", fetch(:branch), repo[:git]
+      end
+      # Upload non-repo configs
       upload! repo[:config_src], repo[:config_dst]
-      upload! repo[:config_src], "/tmp/xyz/abc/1.json"
     end
   end
 end
@@ -96,16 +113,16 @@ desc "Report Uptimes"
 task :uptime do
   on roles(:all) do |host|
     execute "uptime"
-    info "Host #{host} (#{host.roles.to_a.join(', ')}):\t#{capture(:uptime)}"
+    info "Host #{host} (#{host.roles.to_a.join(", ")}):\t#{capture(:uptime)}"
   end
 end
 
 desc "Deploy Docker App"
 task :docker_deploy do
   on roles(:all) do |host|
-    upload! 'kitchen/data_bags/docker/rsm.json', 'rsm.json'
+    upload! "kitchen/data_bags/docker/rsm.json", "rsm.json"
     execute "~/docker.rb > ~/deploy.sh"
     execute "sh ~/deploy.sh"
-    info "Host #{host} (#{host.roles.to_a.join(', ')}):\t#{capture(:uptime)}"
+    info "Host #{host} (#{host.roles.to_a.join(", ")}):\t#{capture(:uptime)}"
   end
 end
